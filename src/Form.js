@@ -1,7 +1,14 @@
 import { useState} from 'react'
 
-function Form() {
-    const [newBounty, setNewBounty] = useState({})
+function Form(props) {
+    const [newBounty, setNewBounty] = useState({
+        name: '',
+        wantedFor: '',
+        client: '',
+        reward: 100000,
+        captured: false,
+        lastSeen: ''
+    })
 
     const handleChange = (e) => {
         setNewBounty({...newBounty, [e.target.name]: e.target.value})
@@ -18,16 +25,25 @@ function Form() {
             wantedFor: newBounty.wantedFor,
             client: newBounty.client,
             reward: Number(newBounty.reward),
-            captured: Boolean(newBounty.captured)
+            captured: Boolean(newBounty.captured),
+            lastSeen: newBounty.lastSeen
         }
-        fetch('http://localhost:8000/bouties', {
+        fetch('http://localhost:8000/bounties', {
             method: 'POST',
             body: JSON.stringify(preJSONBody),
             headers: {'Content-Type': 'application/json'}
         })
         .then(res => res.json())
         .then(postedBounty => {
-            setNewBounty({})
+            props.refreshBounties()
+            setNewBounty({
+                name: '',
+                wantedFor: '',
+                client: '',
+                reward: 100000,
+                captured: false,
+                lastSeen: ''
+            })
         })
         .catch(err => {
             console.table(err)
@@ -58,6 +74,12 @@ function Form() {
                 <label htmlFor='reward'>Reward: </label>
                 <input id='reward' type='number' name='reward' 
                     onChange={handleChange} value={newBounty.reward}
+                />
+            </div>
+            <div>
+                <label htmlFor='lastSeen'>Last Seen: </label>
+                <input id='lastSeen' type='text' name='lastSeen' 
+                    onChange={handleChange} value={newBounty.lastSeen}
                 />
             </div>
             <div>

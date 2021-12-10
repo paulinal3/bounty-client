@@ -1,5 +1,5 @@
 function Poster(props) {
-    let status = props.bounty.caught ? 'In Custody' : 'At Large'
+    let status = props.bounty.captured ? 'In Custody' : 'At Large'
     return (
         <div className='Poster'>
             <h2>{status}</h2>
