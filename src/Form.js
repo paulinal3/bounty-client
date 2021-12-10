@@ -38,23 +38,33 @@ function Form() {
         <form onSubmit={postBounty}>
             <div>
                 <label htmlFor='name'>Name: </label>
-                <input id='name' type='text' name='name' onChange={handleChange} />
+                <input id='name' type='text' name='name' 
+                    onChange={handleChange} value={newBounty.name}
+                />
             </div>
             <div>
                 <label htmlFor='wantedFor'>Wanted For: </label>
-                <input id='wantedFor' type='text' name='wantedFor' onChange={handleChange} />
+                <input id='wantedFor' type='text' name='wantedFor' 
+                    onChange={handleChange} value={newBounty.wantedFor}
+                />
             </div>
             <div>
                 <label htmlFor='client'>Client: </label>
-                <input id='client' type='text' name='client' onChange={handleChange} />
+                <input id='client' type='text' name='client' 
+                    onChange={handleChange} value={newBounty.client}
+                />
             </div>
             <div>
                 <label htmlFor='reward'>Reward: </label>
-                <input id='reward' type='number' name='reward' onChange={handleChange} />
+                <input id='reward' type='number' name='reward' 
+                    onChange={handleChange} value={newBounty.reward}
+                />
             </div>
             <div>
                 <label htmlFor='captured'>Captured: </label>
-                <input id='captured' type='checkbox' name='captured' onChange={handleCheck} />
+                <input id='captured' type='checkbox' name='captured' 
+                    onChange={handleCheck} checked={newBounty.captured ? 'checked' : ''}
+                />
             </div>
 
             <input type='submit' value='Post Bounty' />
